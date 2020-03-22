@@ -1,7 +1,7 @@
 import React from 'react';
 import PostItem from "./PostItem";
 
-class PostList extends React.Component{
+class PostList extends React.Component {
 
     render() {
         const {posts} = this.props;
@@ -9,7 +9,7 @@ class PostList extends React.Component{
             <div className="my-3 p-3 rounded box-shadow">
                 <h5 className="border-bottom border-gray pb-2 mb-0">List of posts:</h5>
                 {
-                    posts.map((post)=>{
+                    posts.map((post) => {
                         return <PostItem
                             title={post.title}
                             body={post.body}
@@ -20,7 +20,6 @@ class PostList extends React.Component{
             </div>
         );
     }
-
 }
 
 export default PostList;

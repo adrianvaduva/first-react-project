@@ -54,7 +54,7 @@ class UserAddForm extends React.Component {
                     </div>
 
                     <div className="form-label-group pt-2">
-                        <label >
+                        <label>
                             <input
                                 type="checkbox"
                                 name="is-gold-client"

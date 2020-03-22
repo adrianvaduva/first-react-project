@@ -28,7 +28,8 @@ class App extends React.Component {
                 data = data.filter(user => user.id < 4);
                 data.forEach(user => {
                     user.isGoldClient = false;
-                    user.salary = user.id * 1000
+                    user.salary = user.id * 1000;
+                    user.image = 'https://randomuser.me/api/portraits/women/' + user.id + '.jpg'
                 });
                 this.setState({users: data});
             });
@@ -80,6 +81,11 @@ class App extends React.Component {
         });
     }
 
+    removeUser(userId) {
+        const users = this.state.users.filter(user => user.id !== userId);
+        this.setState({users: users})
+    }
+
     showUsers(event, show) {
         this.setState({showUsers: show})
     }
@@ -88,38 +94,41 @@ class App extends React.Component {
         return (
             <div className="app " style={{background: this.state.background, color: this.state.color}}>
                 <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                    <a className="navbar-brand" href="#">Admin panel - First Project</a>
-                    <div className="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-link">
-                                <input type="button" onClick={(event) => this.showUsers(event, true)}
-                                       value="List of users"/>
-                            </li>
-                            <li className="nav-link">
-                                <input type="button" onClick={(event) => this.showUsers(event, false)}
-                                       value="List of posts"/>
-                            </li>
-                            <li className="nav-link">
-                                <label htmlFor="backgroundColor">Change background</label>
-                                <input type="color" id="backgroundColor" name="backgroundColor"
-                                       onChange={(event) => this.changeBackgroundColor(event)}/>
-                            </li>
-                            <li className="nav-link">
-                                <label htmlFor="color">Change color</label>
-                                <input type="color" id="color" name="color"
-                                       onChange={(event) => this.changeColor(event)}/>
-                            </li>
-                        </ul>
-                    </div>
+                    <a className="navbar-brand" href="/">Admin panel - First Project</a>
                 </nav>
-                <main role="main" className="container">
+                <div className="nav-scroller bg-white shadow-sm">
+                    <nav className="nav nav-underline">
+                        <span className="nav-link">
+                            <input type="button"
+                                   onClick={(event) => this.showUsers(event, true)}
+                                   value="List of users"/>
+                        </span>
+                        <span className="nav-link">
+                            <input type="button"
+                                   onClick={(event) => this.showUsers(event, false)}
+                                   value="List of posts"/>
+                        </span>
+                        <span className="nav-link">
+                            <label htmlFor="backgroundColor">Change background</label>
 
+                            <input type="color" id="backgroundColor" name="backgroundColor"
+                                   onChange={(event) => this.changeBackgroundColor(event)}
+                            />
+                        </span>
+                        <span className="nav-link">
+                            <label htmlFor="color">Change color</label>
+                            <input type="color" id="color" name="color"
+                                   onChange={(event) => this.changeColor(event)}/>
+                        </span>
+                    </nav>
+                </div>
+                <main role="main" className="container">
                     {
                         this.state.showUsers === true
                             ? <div>
                                 <UserAddForm
                                     submitAddForm={(event, name, email, isGoldClient) => this.submitAddForm(event, name, email, isGoldClient)}/>
-                                <UserList users={this.state.users}/>
+                                <UserList users={this.state.users} removeUser={(userId) => this.removeUser(userId)}/>
                             </div>
                             : <PostList posts={this.state.posts}/>
                     }
