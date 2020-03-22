@@ -1,7 +1,7 @@
 import React from 'react';
 
-function UserItem(props) {
-    const {name, email, isGoldClient, salary} = props;
+function PostItem(props) {
+    const {title, body} = props;
 
     return (
         <div className="media text-muted pt-3">
@@ -11,18 +11,14 @@ function UserItem(props) {
                  data-holder-rendered="true" style={{width: '32px', height: '32px'}}/>
             <div className="media-body pb-3 mb-0  lh-125 border-bottom border-gray">
                 <div className="d-flex justify-content-between align-items-center w-100">
-                    <strong>{name}</strong>
-                    <a href="#">Delete</a>
+                    <strong>{title}</strong>
                 </div>
-                <span className="d-block">{email}</span>
-                <span className="d-block">  {isGoldClient
-                    ? <span>Gold Client</span>
-                    : null
-                }</span>
-                <span className="d-block">{salary}</span>
+                <span className="d-block">{body}</span>
+
             </div>
         </div>
     );
+
 }
 
-export default UserItem;
+export default PostItem
