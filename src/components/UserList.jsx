@@ -5,8 +5,8 @@ function UserList(props) {
     const {users} = props;
 
     return (
-        <div>
-            <h2>List of users:</h2>
+        <div className="my-3 p-3 rounded box-shadow">
+            <h5 className="border-bottom border-gray pb-2 mb-0">List of users:</h5>
             {users.map((user, index) => {
                 return <UserItem
                     id={user.id}

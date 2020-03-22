@@ -8,6 +8,7 @@ class App extends React.Component {
         super();
         this.state = {
             background: 'white',
+            color: 'black',
             users: []
         };
     }
@@ -24,8 +25,12 @@ class App extends React.Component {
             })
     }
 
-    changeColor(event) {
+    changeBackgroundColor(event) {
         this.setState({background: event.target.value});
+    }
+
+    changeColor(event) {
+        this.setState({color: event.target.value})
     }
 
     getMaxId(users) {
@@ -59,12 +64,30 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="app" style={{background: this.state.background}}>
-                <h1>Admin panel - First Project</h1>
-                <UserAddForm
-                    submitAddForm={(event, name, email, isGoldClient) => this.submitAddForm(event, name, email, isGoldClient)}/>
-                <UserList users={this.state.users}/>
-                <input type="color" onChange={(event) => this.changeColor(event)}/>
+            <div className="app " style={{background: this.state.background, color: this.state.color}}>
+                <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+                    <a className="navbar-brand" href="#">Admin panel - First Project</a>
+                    <div className="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-link">
+                                <label htmlFor="backgroundColor">Change background</label>
+                                <input type="color" id="backgroundColor" name="backgroundColor"
+                                       onChange={(event) => this.changeBackgroundColor(event)}/>
+                            </li>
+                            <li className="nav-link">
+                                <label htmlFor="color">Change color</label>
+                                <input type="color" id="color" name="color"
+                                       onChange={(event) => this.changeColor(event)}/>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+                <main role="main" className="container">
+                    <UserAddForm
+                        submitAddForm={(event, name, email, isGoldClient) => this.submitAddForm(event, name, email, isGoldClient)}/>
+                    <UserList users={this.state.users}/>
+                </main>
             </div>
         );
     }
