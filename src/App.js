@@ -99,24 +99,23 @@ class App extends React.Component {
                 <div className="nav-scroller bg-white shadow-sm">
                     <nav className="nav nav-underline">
                         <span className="nav-link">
-                            <input type="button"
+                            <input type="button" className="btn btn-light"
                                    onClick={(event) => this.showUsers(event, true)}
                                    value="List of users"/>
                         </span>
                         <span className="nav-link">
-                            <input type="button"
+                            <input type="button" className="btn btn-light"
                                    onClick={(event) => this.showUsers(event, false)}
                                    value="List of posts"/>
                         </span>
                         <span className="nav-link">
-                            <label htmlFor="backgroundColor">Change background</label>
-
+                            <label htmlFor="backgroundColor" className="btn btn-light">Change background</label>
                             <input type="color" id="backgroundColor" name="backgroundColor"
                                    onChange={(event) => this.changeBackgroundColor(event)}
                             />
                         </span>
                         <span className="nav-link">
-                            <label htmlFor="color">Change color</label>
+                            <label htmlFor="color" className="btn btn-light">Change color</label>
                             <input type="color" id="color" name="color"
                                    onChange={(event) => this.changeColor(event)}/>
                         </span>

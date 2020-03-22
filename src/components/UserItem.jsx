@@ -20,7 +20,9 @@ class UserItem extends React.Component {
                 <div className="media-body pb-3 mb-0  lh-125 border-bottom border-gray">
                     <div className="d-flex justify-content-between align-items-center w-100">
                         <strong>{name}</strong>
-                        <a onClick={(userId) => removeUser(id)} href>Delete</a>
+                        <input type="button" className="btn btn-link"
+                               onClick={(userId) => removeUser(id)}
+                               value="Delete"/>
                     </div>
                     <span className="d-block">{email}</span>
                     <span className="d-block">  {isGoldClient
